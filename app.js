@@ -7,7 +7,7 @@ import path from "node:path";
 import cookieParser from "cookie-parser";
 // import logger from "morgan";
 // import Chalk from "chalk";
-import logger from "./loggers/loggerService.js";
+import logger from "./loggers/loggerAdapter.js";
 import * as url from "url";
 import cors from "cors";
 import errorMiddleware from "./middlewares/error.mw.js";
