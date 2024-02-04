@@ -10,6 +10,10 @@ import app from "../app.js";
 import connectToDb from "../model/dbAdapter.js";
 import http from "http";
 import chalk from "chalk";
+import {
+  initialUsers,
+  initialCards,
+} from "../initialData/initialDataService.js";
 
 /**
  * Get port from environment and store in Express.
@@ -86,5 +90,9 @@ function onListening() {
   let addr = server.address();
   let bind = typeof addr === "string" ? addr : addr.port;
   console.log(chalk.cyan(`Listening on http://localhost:${bind}/`));
-  connectToDb();
+  connectToDb().then(() => {
+    //this function will be executed when i connected to db
+    initialUsers();
+    initialCards();
+  });
 }
