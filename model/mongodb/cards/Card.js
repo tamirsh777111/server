@@ -1,31 +1,15 @@
 import mongoose from "mongoose";
-import Image from "./Image.js";
-import Address from "./Address.js";
+import Image from "../users/Image.js";
+import Address from "../users/Address.js";
 import phoneRegex from "../../../utils/phoneRegex.js";
-import passwordRegex from "../../../utils/passwordRegex.js";
-import URL from "../helper/urlStringValidation.js";
+import { DEFAULT_REQUIRED_STRING_VALIDATION } from "../helper/defaultStringValidation.helper.js";
 
 const CardSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    minLength: 2,
-    maxLength: 256,
-    trim: true,
-  },
-  subtitle: {
-    type: String,
-    required: true,
-    minLength: 2,
-    maxLength: 256,
-    trim: true,
-  },
+  title: DEFAULT_REQUIRED_STRING_VALIDATION,
+  subtitle: DEFAULT_REQUIRED_STRING_VALIDATION,
   description: {
-    type: String,
-    required: true,
-    minLength: 2,
-    maxLength: 256,
-    trim: true,
+    ...DEFAULT_REQUIRED_STRING_VALIDATION,
+    maxLength: 1024,
   },
   phone: {
     type: String,
@@ -39,29 +23,16 @@ const CardSchema = new mongoose.Schema({
     unique: true,
     match: RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/),
   },
-  password: {
+  web: {
     type: String,
-    required: true,
-    minLength: 7,
-    maxLength: 20,
-    match: RegExp(passwordRegex),
+    match: RegExp(
+      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+/
+    ),
   },
-  web: URL,
   image: Image,
   address: Address,
-  isBusiness: {
-    type: Boolean,
-    default: false,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
 });
+
 const Card = mongoose.model("card", CardSchema);
 
 export default Card;

@@ -1,8 +1,15 @@
 import connectToMongo from "./mongodb/dbConnect.js";
-import { createUser as createUserMongo } from "./mongodb/users/userService.js";
-import { createCard as createCardMongo } from "./mongodb/cards/cardService.js";
+import {
+  createUserMongo,
+  getUserByEmailMongo,
+} from "./mongodb/users/userService.js";
+import {
+  createCardMongo,
+  getCardByBizNumberMongo,
+  getAllCardsMongo,
+} from "./mongodb/cards/cardService.js";
 import normalizeUser from "./../normalize/user.normalize.js";
-import normalizeCard from "./../normalize/card.normalize.js";
+import normalizeCards from "../normalize/card.normalize.js";
 
 const DB = "mongo";
 
@@ -19,12 +26,38 @@ const createUser = (user) => {
   }
 };
 
+const getUserByEmail = (email) => {
+  if (DB === "mongo") {
+    return getUserByEmailMongo(email);
+  }
+};
+
 const createCard = (card) => {
-  card = normalizeCard(card);
+  //normalizeCard
+  card = normalizeCards(card);
   if (DB === "mongo") {
     return createCardMongo(card);
   }
 };
 
+const getCardByBizNumber = (bizNumber) => {
+  //normalizeCard
+  if (DB === "mongo") {
+    return getCardByBizNumberMongo(bizNumber);
+  }
+};
+
+const getAllCards = () => {
+  if (DB === "mongo") {
+    return getAllCardsMongo();
+  }
+};
+
 export default connectToDb;
-export { createUser, createCard };
+export {
+  createUser,
+  createCard,
+  getCardByBizNumber,
+  getAllCards,
+  getUserByEmail,
+};
