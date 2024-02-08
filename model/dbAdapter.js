@@ -1,7 +1,10 @@
 import connectToMongo from "./mongodb/dbConnect.js";
 import {
   createUserMongo,
+  deleteUserMongo,
   getUserByEmailMongo,
+  patchIsBizMongo,
+  updateUserMongo,
 } from "./mongodb/users/userService.js";
 import {
   createCardMongo,
@@ -26,12 +29,32 @@ const createUser = (user) => {
   }
 };
 
+const updateUser = (id, user) => {
+  user = normalizeUser(user);
+  if (DB === "mongo") {
+    return updateUserMongo(id, user);
+  }
+};
+
 const getUserByEmail = (email) => {
   if (DB === "mongo") {
     return getUserByEmailMongo(email);
   }
 };
 
+const deleteUser = (id) => {
+  if (DB === "mongo") {
+    return deleteUserMongo(id);
+  }
+};
+
+const patchIsBiz = (id, isBusiness) => {
+  if (DB === "mongo") {
+    return patchIsBizMongo(id, isBusiness);
+  }
+};
+
+//cards
 const createCard = (card) => {
   //normalizeCard
   card = normalizeCards(card);
@@ -60,4 +83,7 @@ export {
   getCardByBizNumber,
   getAllCards,
   getUserByEmail,
+  updateUser,
+  deleteUser,
+  patchIsBiz,
 };

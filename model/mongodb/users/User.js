@@ -3,7 +3,6 @@ import Name from "./Name.js";
 import Image from "./Image.js";
 import Address from "./Address.js";
 import phoneRegex from "../../../utils/phoneRegex.js";
-import passwordRegex from "../../../utils/passwordRegex.js";
 
 const UserSchema = new mongoose.Schema({
   name: Name,
