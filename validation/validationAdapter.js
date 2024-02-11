@@ -1,6 +1,7 @@
 import registerSchemaValidation from "./joi/users/register.js";
 import loginSchemaValidation from "./joi/users/login.js";
 import editUserSchemaValidation from "./joi/users/editUser.js";
+import validateObjectIdSchema from "./joi/objectId.js";
 
 const VALIDATION = "joi";
 
@@ -28,4 +29,17 @@ const editUserValidation = (userInput) => {
   }
 };
 
-export { registerValidation, loginValidation, editUserValidation };
+const objectIdValidation = (id) => {
+  if (VALIDATION === "joi") {
+    return validateObjectIdSchema(id);
+  } else {
+    throw new Error(`Validation ${VALIDATION} is not supported`);
+  }
+};
+
+export {
+  registerValidation,
+  loginValidation,
+  editUserValidation,
+  objectIdValidation,
+};

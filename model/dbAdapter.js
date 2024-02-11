@@ -10,6 +10,7 @@ import {
   createCardMongo,
   getCardByBizNumberMongo,
   getAllCardsMongo,
+  getCardByIdMongo,
 } from "./mongodb/cards/cardService.js";
 import normalizeUser from "./../normalize/user.normalize.js";
 import normalizeCards from "../normalize/card.normalize.js";
@@ -76,6 +77,12 @@ const getAllCards = () => {
   }
 };
 
+const getCardById = (id) => {
+  if (DB === "mongo") {
+    return getCardByIdMongo(id);
+  }
+};
+
 export default connectToDb;
 export {
   createUser,
@@ -86,4 +93,5 @@ export {
   updateUser,
   deleteUser,
   patchIsBiz,
+  getCardById,
 };

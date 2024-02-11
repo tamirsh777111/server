@@ -40,6 +40,12 @@ const UserSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
 const User = mongoose.model("user", UserSchema);
+/**
+ * create users collection
+ * connect users collection to user schema
+ * create user model that allow us to crud to/from database - users collection(table)
+ */
 
 export default User;
