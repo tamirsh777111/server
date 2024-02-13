@@ -11,6 +11,7 @@ import {
   getCardByBizNumberMongo,
   getAllCardsMongo,
   getCardByIdMongo,
+  getAllMyCardsMongo,
 } from "./mongodb/cards/cardService.js";
 import normalizeUser from "./../normalize/user.normalize.js";
 import normalizeCards from "../normalize/card.normalize.js";
@@ -56,9 +57,9 @@ const patchIsBiz = (id, isBusiness) => {
 };
 
 //cards
-const createCard = (card) => {
+const createCard = async (card) => {
   //normalizeCard
-  card = normalizeCards(card);
+  card = await normalizeCards(card);
   if (DB === "mongo") {
     return createCardMongo(card);
   }
@@ -83,6 +84,12 @@ const getCardById = (id) => {
   }
 };
 
+const getAllMyCards = (user_id) => {
+  if (DB === "mongo") {
+    return getAllMyCardsMongo(user_id);
+  }
+};
+
 export default connectToDb;
 export {
   createUser,
@@ -94,4 +101,5 @@ export {
   deleteUser,
   patchIsBiz,
   getCardById,
+  getAllMyCards,
 };
