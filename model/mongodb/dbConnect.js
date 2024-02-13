@@ -12,7 +12,7 @@ const connectToMongo = () => {
       .catch((err) => {
         console.log(chalk.redBright.bold("Error connecting to MongoDB: ", err));
         reject(err);
-        process.exit(1); //drop the server
+        process.exit(1);
       });
   });
 };

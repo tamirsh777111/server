@@ -9,5 +9,4 @@ const DEFAULT_REQUIRED_STRING_VALIDATION = {
   required: true,
 };
 
-//trim: delete spaces before and after word
 export { DEFAULT_STRING_VALIDATION, DEFAULT_REQUIRED_STRING_VALIDATION };

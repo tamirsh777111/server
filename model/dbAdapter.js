@@ -56,9 +56,7 @@ const patchIsBiz = (id, isBusiness) => {
   }
 };
 
-//cards
 const createCard = async (card) => {
-  //normalizeCard
   card = await normalizeCards(card);
   if (DB === "mongo") {
     return createCardMongo(card);
@@ -66,7 +64,6 @@ const createCard = async (card) => {
 };
 
 const getCardByBizNumber = (bizNumber) => {
-  //normalizeCard
   if (DB === "mongo") {
     return getCardByBizNumberMongo(bizNumber);
   }

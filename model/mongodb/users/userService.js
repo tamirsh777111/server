@@ -1,7 +1,6 @@
 import User from "./User.js";
 
 const createUserMongo = (userData) => {
-  //save user in mongoose
   let user = new User(userData);
   return user.save();
 };

@@ -12,7 +12,6 @@ import bodyValidationMiddleware from "../../middlewares/bodyValidation.mw.js";
 import { createCardValidation } from "../../validation/validationAdapter.js";
 const router = express.Router();
 
-//http://localhost:3030/api/cards
 router.get("/", getAllCardsController);
 
 router.get("/my-cards", authMiddleware, getMyCardsController);

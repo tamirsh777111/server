@@ -17,7 +17,6 @@ import adminOrOwn from "../../middlewares/adminOrOwn.mw.js";
 import objectIdParamsValidationMiddleware from "../../middlewares/objectIdParamsValidation.mw.js";
 const router = express.Router();
 
-// http://localhost:3030/api/users
 router.get("/", (req, res) => {
   res.json("users sub route");
 });
@@ -48,7 +47,6 @@ router.patch(
   authMiddleware,
   objectIdParamsValidationMiddleware,
   adminOrOwn,
-  //add patch validation
   patchIsBizController
 );
 
