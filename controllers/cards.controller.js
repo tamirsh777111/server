@@ -10,9 +10,7 @@ const getAllCardsController = async (req, res) => {
   try {
     let cards = await getAllCards();
     res.json(cards);
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };
 
 const getCardByIdController = async (req, res) => {
@@ -20,7 +18,6 @@ const getCardByIdController = async (req, res) => {
     let card = await getCardById(req.params.id);
     res.json(card);
   } catch (err) {
-    console.log(err);
     handleError(res, 400, err.message);
   }
 };
@@ -31,7 +28,6 @@ const getMyCardsController = async (req, res) => {
     let myCards = await getAllMyCards(userId);
     return res.json(myCards);
   } catch (err) {
-    console.log(err);
     handleError(res, 400, err.message);
   }
 };
@@ -43,7 +39,6 @@ const createCardController = async (req, res) => {
     let newCard = await createCard(req.body);
     return res.json(newCard);
   } catch (err) {
-    console.log(err);
     handleError(res, 400, err.message);
   }
 };

@@ -140,9 +140,7 @@ const initialCards = async (bizId) => {
     for (let card of cards) {
       await createCard(card);
     }
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 };
 
 export { initialUsers, initialCards };

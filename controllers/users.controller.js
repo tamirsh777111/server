@@ -21,7 +21,6 @@ const registerController = async (req, res) => {
     delete newUser.password;
     res.json(newUser);
   } catch (err) {
-    console.log(err);
     handleError(res, 400, err.message);
   }
 };
@@ -39,7 +38,6 @@ const loginController = async (req, res) => {
     });
     res.json(token);
   } catch (err) {
-    console.log(err);
     handleError(res, 400, err.message);
   }
 };
@@ -50,7 +48,6 @@ const updateUserController = async (req, res) => {
     userFromDB.password = undefined;
     res.json(userFromDB);
   } catch (err) {
-    console.log(err);
     handleError(res, 400, err.message);
   }
 };
@@ -61,7 +58,6 @@ const patchIsBizController = async (req, res) => {
     userFromDB.password = undefined;
     res.json(userFromDB);
   } catch (err) {
-    console.log(err);
     handleError(res, 400, err.message);
   }
 };
@@ -72,7 +68,6 @@ const deleteUserController = async (req, res) => {
     userFromDB.password = undefined;
     res.json(userFromDB);
   } catch (err) {
-    console.log(err);
     handleError(res, 400, err.message);
   }
 };
