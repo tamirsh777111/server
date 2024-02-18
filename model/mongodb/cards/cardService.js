@@ -18,9 +18,15 @@ const getCardByBizNumberMongo = (bizNumber) => {
 const getAllMyCardsMongo = (user_id) => {
   return Card.find({ user_id });
 };
+
+const updateLikeCardMongo = (id, likes) => {
+  return Card.findByIdAndUpdate(id, { likes }, { new: true });
+};
+
 const updateCardMongo = (id, cardData) => {
   return Card.findByIdAndUpdate(id, cardData, { new: true });
 };
+
 const deleteCardMongo = (id) => {
   return Card.findByIdAndDelete(id);
 };
@@ -32,4 +38,5 @@ export {
   getAllMyCardsMongo,
   updateCardMongo,
   deleteCardMongo,
+  updateLikeCardMongo,
 };

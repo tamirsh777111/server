@@ -17,6 +17,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(express.static(path.join(__dirname, "build")));
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.get("/cards", (req, res) => {
@@ -38,4 +41,7 @@ app.get("/error", (req, res) => {
 app.use("/api", apiRouter);
 app.use(errorMiddleware);
 
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 export default app;
